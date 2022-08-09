@@ -112,7 +112,7 @@
         </OutArgument>
       </ui:SelectFile.SelectedFile>
     </ui:SelectFile>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="wbName = Path.GetFileName(workbookName);&#xA;wbExt = Path.GetExtension(workbookName);" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="466.4,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="wbExt = Path.GetExtension(workbookName);&#xD;&#xA;var fn = Path.GetFileNameWithoutExtension(workbookName);&#xD;&#xA;var path = Path.GetDirectoryName(workbookName);&#xD;&#xA;Directory.CreateDirectory(Path.Combine(path, &quot;split&quot;));&#xD;&#xA;wbName = Path.Combine(path, &quot;split&quot;, fn);" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="466.4,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
       <ui:InvokeCode.Arguments>
         <OutArgument x:TypeArguments="x:String" x:Key="wbExt">
           <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">WorkbookFileExtension</CSharpReference>
@@ -184,7 +184,7 @@
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CommitWorkbook workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="CommitWorkbook.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="WorkbookPath">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">string.Format("{0}_{2}{1}", WorkbookName, WorkbookFileExtension, "x")</CSharpValue>
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">string.Format("{0}_{2}{1}", WorkbookName, WorkbookFileExtension, WorkbookExtraName)</CSharpValue>
                 </InArgument>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="WorkbookData">
                   <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">table</CSharpValue>
