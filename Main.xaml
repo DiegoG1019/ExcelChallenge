@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1410.4,1527.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1410.4,610.4" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="64">
+    <scg:List x:TypeArguments="x:String" Capacity="33">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -37,7 +37,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="106">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
       <AssemblyReference>Microsoft.CSharp</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
@@ -94,106 +94,17 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="508,1462.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap:VirtualizedContainerService.HintSize="200,84.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="BaseWorkbook" />
       <Variable x:TypeArguments="x:String" Name="WorkbookName" />
       <Variable x:TypeArguments="x:String" Name="WorkbookFileExtension" />
+      <Variable x:TypeArguments="x:Int32" Name="X" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:SelectFile DisplayName="Browse for file" Filter="Excel|*.xlsx;*.xls;*.xlsm;*.xlsb" sap:VirtualizedContainerService.HintSize="466.4,139.2" sap2010:WorkflowViewState.IdRef="SelectFile_1">
-      <ui:SelectFile.SelectedFile>
-        <OutArgument x:TypeArguments="x:String">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">BaseWorkbook</CSharpReference>
-        </OutArgument>
-      </ui:SelectFile.SelectedFile>
-    </ui:SelectFile>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="wbExt = Path.GetExtension(workbookName);&#xD;&#xA;var fn = Path.GetFileNameWithoutExtension(workbookName);&#xD;&#xA;var path = Path.GetDirectoryName(workbookName);&#xD;&#xA;Directory.CreateDirectory(Path.Combine(path, &quot;split&quot;));&#xD;&#xA;wbName = Path.Combine(path, &quot;split&quot;, fn);" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="466.4,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
-      <ui:InvokeCode.Arguments>
-        <OutArgument x:TypeArguments="x:String" x:Key="wbExt">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">WorkbookFileExtension</CSharpReference>
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="wbName">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">WorkbookName</CSharpReference>
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="workbookName">
-          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">BaseWorkbook</CSharpValue>
-        </InArgument>
-      </ui:InvokeCode.Arguments>
-    </ui:InvokeCode>
-    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="466.4,985.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="scg:IEnumerable(sd:DataTable)" Name="SplitWorkbook" />
-        <Variable x:TypeArguments="sd:DataTable" Name="ExcelDat" />
-        <Variable x:TypeArguments="x:Int32" Name="WorkbookExtraName" />
-      </Sequence.Variables>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:ReadRange Range="{x:Null}" AddHeaders="True" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="424.8,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1">
-        <ui:ReadRange.DataTable>
-          <OutArgument x:TypeArguments="sd:DataTable">
-            <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">ExcelDat</CSharpReference>
-          </OutArgument>
-        </ui:ReadRange.DataTable>
-        <ui:ReadRange.WorkbookPath>
-          <InArgument x:TypeArguments="x:String">
-            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">BaseWorkbook</CSharpValue>
-          </InArgument>
-        </ui:ReadRange.WorkbookPath>
-      </ui:ReadRange>
-      <ui:InvokeCode ContinueOnError="{x:Null}" Code="IEnumerable&lt;DataTable&gt; split = new DataTable[] { ExcelDat.Select().Take(1000).CopyToDataTable() };&#xA;for (int i = 1000; i &lt; ExcelDat.Rows.Count; i += 1000)&#xA;&#x9;split = split.Append(ExcelDat.Select().Skip(i).Take(1000).CopyToDataTable());&#xA;SplitWorkbook = split;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="424.8,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
-        <ui:InvokeCode.Arguments>
-          <InArgument x:TypeArguments="sd:DataTable" x:Key="ExcelDat">
-            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">ExcelDat</CSharpValue>
-          </InArgument>
-          <OutArgument x:TypeArguments="scg:IEnumerable(sd:DataTable)" x:Key="SplitWorkbook">
-            <CSharpReference x:TypeArguments="scg:IEnumerable(sd:DataTable)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">SplitWorkbook</CSharpReference>
-          </OutArgument>
-        </ui:InvokeCode.Arguments>
-      </ui:InvokeCode>
-      <ParallelForEach x:TypeArguments="sd:DataTable" DisplayName="Parallel For Each" sap:VirtualizedContainerService.HintSize="424.8,560" sap2010:WorkflowViewState.IdRef="ParallelForEach`1_3">
-        <ParallelForEach.Values>
-          <InArgument x:TypeArguments="scg:IEnumerable(sd:DataTable)">
-            <CSharpValue x:TypeArguments="scg:IEnumerable(sd:DataTable)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">SplitWorkbook</CSharpValue>
-          </InArgument>
-        </ParallelForEach.Values>
-        <ActivityAction x:TypeArguments="sd:DataTable">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataTable" Name="table" />
-          </ActivityAction.Argument>
-          <Sequence sap:VirtualizedContainerService.HintSize="375.2,411.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeCode ContinueOnError="{x:Null}" Code="System.Threading.Interlocked.Increment(ref index);" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_3" Language="CSharp">
-              <ui:InvokeCode.Arguments>
-                <InOutArgument x:TypeArguments="x:Int32" x:Key="index">
-                  <CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">WorkbookExtraName</CSharpReference>
-                </InOutArgument>
-              </ui:InvokeCode.Arguments>
-            </ui:InvokeCode>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CommitWorkbook workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="CommitWorkbook.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="WorkbookPath">
-                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">string.Format("{0}_{2}{1}", WorkbookName, WorkbookFileExtension, WorkbookExtraName)</CSharpValue>
-                </InArgument>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="WorkbookData">
-                  <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">table</CSharpValue>
-                </InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-          </Sequence>
-        </ActivityAction>
-      </ParallelForEach>
-    </Sequence>
   </Sequence>
 </Activity>
